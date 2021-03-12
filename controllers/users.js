@@ -6,6 +6,8 @@ const Forbidden = require('../errors/Forbidden.js');
 const Unautorized = require('../errors/Unautorized.js');
 const BadRequest = require('../errors/BadRequest.js');
 
+const { JWT_SECRET = 'dev_jwt' } = process.env;
+
 module.exports.login = (req, res, next) => {
   const { email, password } = req.body;
   return User.findOne({ email }).select('+password')
@@ -22,7 +24,7 @@ module.exports.login = (req, res, next) => {
         });
     })
     .then(({ _id }) => {
-      const token = jwt.sign({ _id }, process.env.JWT_SECRET, { expiresIn: '7d' });
+      const token = jwt.sign({ _id }, JWT_SECRET, { expiresIn: '7d' });
       res.send({ token });
     })
     .catch(next);

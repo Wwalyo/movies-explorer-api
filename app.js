@@ -11,11 +11,11 @@ const auth = require('./middlewares/auth.js');
 const { requestLogger, errorLogger } = require('./middlewares/logger.js');
 const NotFound = require('./errors/NotFound.js');
 
-const { PORT = 3000 } = process.env;
+const { PORT = 3000, MONGO_ADDRESS = 'mongodb://localhost:27017/moviedb' } = process.env;
 
 const app = express();
 
-mongoose.connect(process.env.MONGO_ADDRESS, {
+mongoose.connect(MONGO_ADDRESS, {
   useNewUrlParser: true,
   useCreateIndex: true,
   useFindAndModify: false,
