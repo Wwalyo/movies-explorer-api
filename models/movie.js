@@ -8,7 +8,7 @@ const movieSchema = new mongoose.Schema({
     maxlength: 30,
     validate: {
       validator(v) {
-        return /[\wа-яё]{2,30}/.test(v);
+        return /[а-яё]{2,30}/.test(v);
       },
       message: (props) => `${props.value} Некорректное название!`,
     },
@@ -20,7 +20,7 @@ const movieSchema = new mongoose.Schema({
     maxlength: 30,
     validate: {
       validator(v) {
-        return /[а-яё_]{2,30}/.test(v);
+        return /[\wа-яё_]{2,30}/.test(v);
       },
       message: (props) => `${props.value} Некорректное название!`,
     },
@@ -89,7 +89,7 @@ const movieSchema = new mongoose.Schema({
     required: true,
     validate: {
       validator(v) {
-        return /^https?:\/\/\S+(?:jpg|jpeg|png)$/.test(v);
+        return /^https?:\/\/\S+(?:jpg|jpeg|png)?$/.test(v);
       },
       message: (props) => `${props.value} Некорректный url!`,
     },
@@ -99,7 +99,7 @@ const movieSchema = new mongoose.Schema({
     required: true,
     validate: {
       validator(v) {
-        return /^https?:\/\/\S+(?:jpg|jpeg|png)$/.test(v);
+        return /^https?:\/\/\S+(?:jpg|jpeg|png)?$/.test(v);
       },
       message: (props) => `${props.value} Некорректный url!`,
     },
@@ -109,7 +109,7 @@ const movieSchema = new mongoose.Schema({
     required: true,
     validate: {
       validator(v) {
-        return /^https?:\/\/\S+(?:jpg|jpeg|png)$/.test(v);
+        return /^https?:\/\/\S+(?:jpg|jpeg|png)?$/.test(v);
       },
       message: (props) => `${props.value} Некорректный url!`,
     },
