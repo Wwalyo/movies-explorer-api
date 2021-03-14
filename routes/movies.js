@@ -18,10 +18,14 @@ router.post('/movies', celebrate({
     image: Joi.string().required(),
     trailer: Joi.string().required(),
     thumbnail: Joi.string().required(),
-
+    movieId: Joi.string().required(),
   }),
 }), createMovie);
 
-router.delete('/movies/:id', deleteMovie);
+router.delete('/movies/:id', celebrate({
+  params: Joi.object().keys({
+    id: Joi.string().required().regex(/^[0-9a-fA-F]{24}$/),
+  })
+}), deleteMovie);
 
 module.exports = router;

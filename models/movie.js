@@ -121,8 +121,8 @@ const movieSchema = new mongoose.Schema({
   },
   movieId: {
     type: String,
-    default: 1,
     required: true,
+    unique: true,
   },
 });
 

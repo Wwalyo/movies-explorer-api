@@ -12,7 +12,7 @@ module.exports.getMovies = (req, res, next) => {
 
 module.exports.createMovie = (req, res, next) => {
   const {
-    country, director, duration, year, description, image, trailer, nameRU, nameEN, thumbnail,
+    country, director, duration, year, description, image, trailer, nameRU, nameEN, thumbnail, movieId,
   } = req.body;
   Movie.create({
     country,
@@ -26,6 +26,7 @@ module.exports.createMovie = (req, res, next) => {
     nameEN,
     thumbnail,
     owner: req.user._id,
+    movieId,
   })
     .then((movie) => movie.populate('owner').execPopulate())
     .then((movie) => res.send(movie))

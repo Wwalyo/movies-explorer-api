@@ -6,6 +6,8 @@ const errorProcessing = (err, req, res, next) => {
     res.status(err.status).send({ message: err.message });
   } else if (err.name === 'ValidationError') {
     res.status(400).send({ message: 'Переданы некорректные данные', details: err.message });
+  } else if (err.name === 'MongoError') {
+    res.status(409).send({ message: 'Такой email уже зарегистрирован', details: err.message });
   } else if (err.name === 'CastError') {
     res.status(400).send({ message: 'Передан неверный идентификатор', details: err.message });
   } else if (isCelebrateError) {
