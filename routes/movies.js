@@ -25,7 +25,7 @@ router.post('/movies', celebrate({
 router.delete('/movies/:id', celebrate({
   params: Joi.object().keys({
     id: Joi.string().required().regex(/^[0-9a-fA-F]{24}$/),
-  })
+  }),
 }), deleteMovie);
 
 module.exports = router;
